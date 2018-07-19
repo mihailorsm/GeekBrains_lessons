@@ -37,11 +37,12 @@ public class GeekLesson3 {
                     if (trying > number)           // сравниваем с загаданным и даем пользователю подсказку
                         System.out.println("Загаданное число меньше. Осталось " + shoot + " попытки");
                     else
-                        if (shoot==1)
                         System.out.println("Загаданное число больше. Осталось " + shoot + " попытки");
                 }
         }
         while (shoot > 0 && !flag);                // условие для работы в цикле; пока есть попытки и число не угадали
+        if (!flag)
+            System.out.println("Вы проиграли");
         System.out.println("Повторить игру еще раз? 1 – да / 0 – нет");         //
         if (scan.nextInt() == 1)        //
             playGame(makeNumber());     //
