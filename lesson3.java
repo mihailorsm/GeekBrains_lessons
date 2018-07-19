@@ -34,17 +34,28 @@ public class GeekLesson3 {
             }
                 else{
                     shoot--;                       // если не угадали, снижаем кол-во попыток
-                    if (trying > number)           // сравниваем с загаданным и даем пользователю подсказку
-                        System.out.println("Загаданное число меньше. Осталось " + shoot + " попытки");
-                    else
-                        System.out.println("Загаданное число больше. Осталось " + shoot + " попытки");
+                    switch (shoot){                // корректный вывод оставшихся попыток
+                        case 2 :
+                            if (trying > number)           // сравниваем с загаданным и даем пользователю подсказку
+                                System.out.println("Загаданное число меньше. Осталось " + shoot + " попытки");
+                            else
+                                System.out.println("Загаданное число больше. Осталось " + shoot + " попытки");
+                            break;
+                        case 1 :
+                            if (trying > number)
+                                System.out.println("Загаданное число меньше. Осталось " + shoot + " поытка");
+                            else
+                                System.out.println("Загаданное число больше. Осталось " + shoot + " попытка");
+                            break;
+                        case 0 :
+                            System.out.println("Вы проиграли.\nЗагаданное число " + number);
+                            break;
+                    }
                 }
         }
         while (shoot > 0 && !flag);                // условие для работы в цикле; пока есть попытки и число не угадали
-        if (!flag)
-            System.out.println("Вы проиграли");
         System.out.println("Повторить игру еще раз? 1 – да / 0 – нет");         //
-        if (scan.nextInt() == 1)        //
-            playGame(makeNumber());     //
+        if (scan.nextInt() == 1)        // если 1, то запускаем заново
+            playGame(makeNumber());     // запускаем заново
     }
 }
