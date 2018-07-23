@@ -91,22 +91,22 @@ public class GeekLesson2 {
         boolean balanced = false;
         int sum = 0;
         for (int i = 0; i < mas.length; i++)
-            sum+=mas[i];
-        if (sum % 2 !=0)
-            return balanced;
-        int left = mas[0];
+            sum+=mas[i];          // получаем сумму элементов массива
+        if (sum % 2 !=0)          // проверяем четна ли сумма, если нет, то такого места заведомо нет
+            return balanced;      // так как левая и правая часть это 2*k - всегда четное
+        int left = mas[0];        // первый элемент - левая часть, все остальные - правая
         int right = sum - mas[0];
         int i = 1;
         do{
-            if (left == right) {
+            if (left == right) {  // проверяем равенство правой и левой части
                 balanced = true;
-                break;
+                break;            // выходим, если такое место нашлось
             }
-            left += mas[i];
-            right -= mas[i];
+            left += mas[i];      // к левой части мы прибавляем следующий элемент
+            right -= mas[i];     // в правой текущий элемент проападает
             i++;
         }
-        while (i < mas.length);
+        while (i < mas.length - 2);  // делаем это столько раз, сколько элементов в массиве, коме последнего и первого
         return balanced;
     }
 //7. **** Написать метод, которому на вход подается одномерный массив и число n (может быть положительным, или отрицательным),
