@@ -1,9 +1,7 @@
+package com.company;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.*;
 
-import java.io.IOException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
@@ -11,7 +9,7 @@ import java.nio.channels.ReadableByteChannel;
 public class SqlParse {
     public static void main(String[] args) {
         saveRequestFromTravianServer("https://ts5.travian.ru/map.sql", "map.txt");
-        System.out.println(createRequestForTmpTable("map.txt"));
+        createDateBase("map.txt");
     }
 
     public static void saveRequestFromTravianServer(String url, String fileName){
@@ -27,18 +25,24 @@ public class SqlParse {
         }
     }
 
-    public static String createRequestForTmpTable(String filename) {
+    public static void createDateBase(String filename) {
         String requestForCreate = null;
         try {
-            FileInputStream inputStream = new FileInputStream(filename);
-  //          while
+            BufferedReader reader = new BufferedReader(new FileReader("map.txt"));
+            String str;
+            Class.forName("com.mysql.driver");
+            while((str = reader.readLine())!= null)
+            {
+
+            }
         }catch (FileNotFoundException e){
             System.out.println("File not found");
         }catch (IOException e){
             e.getMessage();
         }
-
-        return requestForCreate;
+        catch (ClassNotFoundException e){
+            System.out.println("Не подключен драйвер");
+        }
     }
 
 }
